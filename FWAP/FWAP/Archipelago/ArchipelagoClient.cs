@@ -71,7 +71,7 @@ namespace BepInEx5ArchipelagoPluginTemplate.Archipelago
                             loginResult = session.TryConnectAndLogin(
                             Game,
                             ServerData.SlotName,
-                            ItemsHandlingFlags.NoItems, // TODO make sure to change this line
+                            ItemsHandlingFlags.AllItems, // TODO make sure to change this line
                             new Version(APVersion),
                             password: ServerData.Password,
                             requestSlotData: false // ServerData.NeedSlotData
@@ -203,9 +203,8 @@ namespace BepInEx5ArchipelagoPluginTemplate.Archipelago
             session.Locations.CompleteLocationChecks(location);
         }
 
-        public int GetItemQuantity(int item)
-        {
-            session.Socket.SendPacket(new SyncPacket());
+        public int GetItemQuantity(long item)
+        {            
             int counter = 0;
             foreach(NetworkItem networkitem in session.Items.AllItemsReceived) 
             {
