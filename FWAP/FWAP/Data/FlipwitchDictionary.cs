@@ -11,6 +11,9 @@ namespace FWAP.Data
         public static Dictionary<int, string> locations = new Dictionary<int, string>
         {
             { 300000001, "BlackWitchCostume"},
+            { 300000002, "RedWizardCostume"},
+            { 300000065, "FairyBubble"},
+            { 300000003, "BewitchedBubble"},
             { 300000184, "MimicKey"},
             { 300000023, "GoblinBomb"},
             { 300000035, "MagneticHairpin"},
@@ -23,6 +26,7 @@ namespace FWAP.Data
             { 300000276, "SlimeTransform"},
             { 300000155, "MermaidScale"},
             { 300000017, "Cowbell"},
+            { 300000026, "GoblinHeadshot"},
             { 300000180, "CatGirlsClothes"},
             { 300000079, "HellishDango"},
             { 300000238, "LegendaryHalo"},

@@ -68,14 +68,14 @@ namespace BepInEx5ArchipelagoPluginTemplate.Archipelago
             try
             {
                 // it's safe to thread this function call but unity notoriously hates threading so do not use excessively
-                            loginResult = session.TryConnectAndLogin(
+                            ThreadPool.QueueUserWorkItem(_ => HandleConnectResult( session.TryConnectAndLogin(
                             Game,
                             ServerData.SlotName,
                             ItemsHandlingFlags.AllItems, // TODO make sure to change this line
                             new Version(APVersion),
                             password: ServerData.Password,
                             requestSlotData: false // ServerData.NeedSlotData
-                        );
+                        )));
             }
             catch (Exception e)
             {

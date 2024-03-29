@@ -164,7 +164,7 @@ namespace BepInEx5ArchipelagoPluginTemplate
             else
             { Plugin.BepinLogger.LogMessage("Isn't Null"); }
             int index = values.locations.IndexOf(location);
-            Plugin.BepinLogger.LogMessage(index);            
+            Plugin.BepinLogger.LogMessage(index + "-" + location);
             if (index == -1)
             {
                 Plugin.BepinLogger.LogMessage("Something went wrong");
@@ -188,12 +188,15 @@ namespace BepInEx5ArchipelagoPluginTemplate
             while (archipelagoClient.ReceiveNextItem())
             {
                 
-            }            
+            }
+            if (itemName == "coin")
+                return false;
+                //itemName = "GoblinHeadshot";
             return true;
             
         }
 
-        static string GetNextProgressive(int item)
+        static string GetNextProgressive(long item)
         {
             int count = ClientFactory.Get().GetItemQuantity(item);
             Plugin.BepinLogger.LogMessage(count.ToString());
@@ -203,18 +206,65 @@ namespace BepInEx5ArchipelagoPluginTemplate
             {
                 case 300000080:
                     if (count == 0)
-                    {
-                        Plugin.BepinLogger.LogMessage("Uniquely this");
+                    {                        ;
                         return "GoblinHeadshot";
                     }
 
-                    else if (count >= 1)
-                    {
-                        Plugin.BepinLogger.LogMessage("The Other Message");
+                    else if (count == 1)
+                    {                        
                         return "GoblinBusinessCard";
                     }
+
+                    else if (count == 2)
+                    {
+                        return "GoblinApartmentKey"; //Fix name 
+                    }
+
+                    else if (count == 3)
+                    {
+                        return "GoblinModelLuggage"; //Fix name?
+                    }
+
                     break;
 
+                case 300000082:
+                    if (count == 0) {return "HellishDango";} //name
+
+                    else if (count == 1) { return "HeavenlyDaikon"; } //name
+
+                    break;
+
+                case 300000076:
+                    if (count == 0) { return "Cowbell"; }
+
+                    else if (count == 1) { return "DeliciousMilk"; } //Fix Name
+
+                    else if (count == 2) { return "DeluxeMilkshake"; } //Fix Name
+                    
+                    else if (count == 3) { return "CherryAptKey"; } //Fix Name
+
+                    break;
+
+                case 300000088:
+                    if (count == 0) { return "AngelLetter";}
+
+                    else if (count == 1) { return "DemonLetter";} //name?
+
+                    break;
+
+                case 300000095:
+                    if (count == 0) { return "FungalKey"; } //right item?
+
+                    else if (count == 1) { return "FungalDeed"; } //name
+
+                    break;
+
+                case 300000101:
+                    if (count == 0) { return "playerWandLevel"; } //name and number
+
+                    else if (count == 1) { return "playerWandLevel"; }
+
+                    break;
             }
             return "";
         }
